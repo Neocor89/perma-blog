@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
-import { getContract } from "./configureWarpClient";
+import { getContract } from "../configureWarpClient";
 
 export default function CreatePostComponent() {
   const [post, updatePost] = useState({
@@ -22,7 +22,7 @@ export default function CreatePostComponent() {
         function: "createPost",
         post,
       });
-      console.log("Result: ", result);
+
       router.push("/");
     } catch (err) {
       console.log(err);
@@ -30,21 +30,25 @@ export default function CreatePostComponent() {
   }
 
   return (
-    <div className="w-96 mx-auto flex flex-col items-start">
+    <div className="w-[650px] px-14 mx-auto flex flex-col items-start">
       <input
-        className="w-42 p-2 text-lg border-none mb-5"
+        className="text-white outline-none w-72 mt-8 p-2 text-lg border-none mb-5 bg-[#23192B]"
         value={post.title}
         placeholder="Post title"
         onChange={(e) => updatePost({ ...post, title: e.target.value })}
       />
       <textarea
-        className="w-full h-72 mb-5 p-5"
+        className="w-full outline-none h-72 mb-5 p-5 bg-[#23192B] text-white"
         value={post.content}
         placeholder="Post content"
+        title="Markdow supported"
         onChange={(e) => updatePost({ ...post, content: e.target.value })}
       />
 
-      <button className="w-48 px-0 py-3 " onClick={createPost}>
+      <button
+        className="w-48 px-0 mt-4 font-bold py-3 bg-[#F9874F] rounded-md"
+        onClick={createPost}
+      >
         Create Post
       </button>
     </div>

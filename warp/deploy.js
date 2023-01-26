@@ -23,9 +23,6 @@ async function deploy() {
   });
 
   const { cachedValue } = await contract.readState();
-
-  console.log("Contract state: ", cachedValue);
-  console.log("ContractTxId: ", contractTxId);
 }
 
 deploy();

@@ -16,10 +16,8 @@ export default function Home() {
 
     try {
       const data = await (await contract).readState();
-      console.log("Data: ", data);
       const posts = Object.values(data.cachedValue.state.posts);
       setPosts(posts);
-      console.log("Posts", posts);
     } catch (err) {
       console.log(err);
     }
@@ -27,13 +25,15 @@ export default function Home() {
 
   return (
     <div className="bg-[#222E50] flex flex-col">
-      <h1 className="text-4xl mt-8 font-bold text-white text-center font-Oswald">
+      <h1 className="text-4xl mt-8 mb-16 font-bold text-white text-center font-Oswald">
         Ben Dev PermaBlog
       </h1>
       {posts.map((post, index) => (
-        <div key={index} className="py-4 px-0 border-b decoration-[#C5D2FC]">
-          <p className="text-lg mb-0">{post.title}</p>
-          <ReactMarkdown>{post.content}</ReactMarkdown>
+        <div key={index} className="mx-auto text-white py-4 px-0">
+          <p className="text-xl mb-8 font-bold">{post.title}</p>
+          <ReactMarkdown className="text-white mb-10">
+            {post.content}
+          </ReactMarkdown>
         </div>
       ))}
     </div>
